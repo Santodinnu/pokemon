@@ -5,7 +5,7 @@ const myStyle = {
   backgroundColor: "#000000",
 };
 
-const regEx = /(\b[a-z](?!\s))/g;
+const expression = /(\b[a-z](?!\s))/g;
 
 export default function Index({ pokemon }) {
   return (
