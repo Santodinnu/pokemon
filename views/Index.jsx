@@ -17,7 +17,7 @@ export default function Index({ pokemon }) {
             <Fragment key={poke.name}>
               <li>
                 <a href={`/pokemon/${i}`}>
-                  {poke.name.replace(regEx, function (x) {
+                  {poke.name.replace(expression, function (x) {
                     return x.toUpperCase();
                   })}
                 </a>
