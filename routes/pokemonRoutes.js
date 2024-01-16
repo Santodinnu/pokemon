@@ -13,3 +13,4 @@ router.get('/', pokemonController.pokemonIndex)
 router.get('/:index', pokemonController.pokemonShow)
 
 module.exports = router
+
