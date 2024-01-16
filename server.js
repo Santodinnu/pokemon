@@ -1,37 +1,29 @@
-const express = require('express')
-//const methodOverride = require('method-override')
+// Modules
+const express = require("express");
+const jsxEngine = require("jsx-view-engine");
 
-const app = express()
+// Database Models
+const pokemon = require("./models/pokemon"); 
+// Routes
+const pokemonRoutes = require("./routes/pokemonRoutes");
 
-// const fruits = require('./models/fruits')
+// Express app
+const app = express();
+const PORT = 3000;
 
-const PORT = 3000
 
-// load our engine
-const jsxEngine = require('jsx-view-engine')
-const pokemon = require('./models/pokemon')
+app.set("view engine", "jsx");
+app.engine("jsx", jsxEngine());
 
-// bring in the router
-// const fruitRoutes = require('./routes/fruitRoutes')
-// const vegetableRoutes = require('./routes/vegetableRoutes')
+// Mount middleware (app.use)
+app.use("/pokemon", pokemonRoutes); 
 
-// format our POST request data 
-// app.use(express.urlencoded({ extended: true }));
-// app.use(methodOverride('_method'))
-// app.use('/fruits', fruitRoutes)
-// app.use('/vegetables', vegetableRoutes)
 
-// setup our engine
-// app.set('view engine', 'jsx');
-// app.engine('jsx', jsxEngine());
+// ==ROOT==
+app.get("/", (req, res) => {
+  res.send("Welcome to the Pokemon App!");
+});
 
-// "root" route
-app.get('/', (req, res) => {
-    res.send('Welcome to the Pokemon App!');
-})
-app.get('/pokemon', (req, res) => {
-    res.send(pokemon)
-})
 app.listen(PORT, () => {
-    console.log('Listening on port: ' + PORT)
-})
+  console.log(`listening to port: ` + PORT);
+});
